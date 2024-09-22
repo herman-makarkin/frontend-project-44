@@ -5,7 +5,7 @@ import gameStart from '../src/cli.js';
 
 const name = gameStart();
 
-console.log('Find the greatest common divisor of given numbers.');
+console.log('What number is missing in the progression?');
 
 let allCorrectAnswers = false;
 
