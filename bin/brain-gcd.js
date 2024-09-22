@@ -30,7 +30,10 @@ const brainCalcGame = () => {
         `'${answer}' is wrong answer ;(. Correct answer was '${expectedAnswer}'.\nLet's try again, ${name}!`,
       );
       break;
-    } else allCorrectAnswers = true;
+    } else {
+      allCorrectAnswers = true;
+      console.log('Correct!');
+    }
   }
 };
 

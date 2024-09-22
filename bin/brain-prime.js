@@ -5,23 +5,20 @@ import gameStart from '../src/cli.js';
 
 const name = gameStart();
 
-console.log('What is the result of the expression?');
+console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+
+const isPrime = (n) => {
+  for (let i = 2; i < Math.log(n) + 1; i += 1) if (n % i === 0) return false;
+  return true;
+};
 
 let allCorrectAnswers = false;
 
 const brainCalcGame = () => {
   for (let i = 0; i < 3; i += 1) {
-    const array = [
-      Math.floor(Math.random() * 100),
-      Math.floor(Math.random() * 3),
-      Math.floor(Math.random() * 100),
-    ];
-
-    const operator = ['+', '-', '*'][array[1]];
-
-    const expression = `${array[0]} ${operator} ${array[2]}`;
-    const expectedAnswer = eval(expression);
-    console.log(`Question: ${expression}`);
+    const number = Math.floor(Math.random() * 100);
+    const expectedAnswer = isPrime(number);
+    console.log(`Question: ${number}`);
     const answer = readlineSync.question('Your answer: ');
     if (answer !== expectedAnswer.toString()) {
       allCorrectAnswers = false;
