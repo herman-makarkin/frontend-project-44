@@ -1,43 +1,34 @@
 #!/usr/bin/env node
 
-import readlineSync from 'readline-sync';
-import defeat from '../src/utils.js';
+import check from '../src/utils.js';
 import gameStart from '../src/cli.js';
 
 const name = gameStart();
 
 console.log('What number is missing in the progression?');
 
-let allCorrectAnswers = false;
+let allCorrect = false;
 
 const brainProgressionGame = () => {
-  console.log('Question: ');
+  const array = [];
   for (let i = 0; i < 3; i += 1) {
     let number1 = Math.floor(Math.random() * 10);
     const number2 = Math.floor(Math.random() * 10);
     const expectedAnswer = number1 + number2 * 5;
     for (let j = 0; j < 11; j += 1) {
       if (j === 5) {
-        console.log('..');
         number1 += number2;
+        array.push('..');
       } else {
-        console.log(number1);
         number1 += number2;
+        array.push(number1);
       }
     }
-
-    const answer = readlineSync.question('Your answer: ');
-    if (answer !== expectedAnswer.toString()) {
-      allCorrectAnswers = false;
-      defeat(answer, expectedAnswer, name);
-      break;
-    } else {
-      allCorrectAnswers = true;
-      console.log('Correct!');
-    }
+    allCorrect = check(array.join(' '), expectedAnswer, name);
+    if (!allCorrect) break;
   }
 };
 
-while (!allCorrectAnswers) brainProgressionGame();
+while (!allCorrect) brainProgressionGame();
 
 console.log(`Congratulations, ${name}!`);

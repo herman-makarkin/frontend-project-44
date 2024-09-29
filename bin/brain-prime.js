@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
-import readlineSync from 'readline-sync';
-import defeat from '../src/utils.js';
+import check from '../src/utils.js';
 import gameStart from '../src/cli.js';
 
 const name = gameStart();
@@ -12,26 +11,16 @@ const isPrime = (n) => {
   for (let i = 2; i < Math.log(n) + 1; i += 1) if (n % i === 0) return false;
   return true;
 };
-
-let allCorrectAnswers = false;
-
+let allCorrect = false;
 const brainCalcGame = () => {
   for (let i = 0; i < 3; i += 1) {
     const number = Math.floor(Math.random() * 100);
     const expectedAnswer = isPrime(number);
-    console.log(`Question: ${number}`);
-    const answer = readlineSync.question('Your answer: ');
-    if (answer !== expectedAnswer.toString()) {
-      allCorrectAnswers = false;
-      defeat(answer, expectedAnswer, name);
-      break;
-    } else {
-      allCorrectAnswers = true;
-      console.log('Correct!');
-    }
+    allCorrect = check(number, expectedAnswer, name);
+    if (!allCorrect) break;
   }
 };
 
-while (!allCorrectAnswers) brainCalcGame();
+while (!allCorrect) brainCalcGame();
 
 console.log(`Congratulations, ${name}!`);
