@@ -2,6 +2,7 @@
 
 import readlineSync from 'readline-sync';
 import gameStart from '../src/cli.js';
+import defeat from '../src/utils.js';
 
 const name = gameStart();
 
@@ -25,9 +26,7 @@ const brainCalcGame = () => {
     const answer = readlineSync.question('Your answer: ');
     if (answer !== expectedAnswer.toString()) {
       allCorrectAnswers = false;
-      console.log(
-        `'${answer}' is wrong answer ;(. Correct answer was '${expectedAnswer}'.\nLet's try again, ${name}!`,
-      );
+      defeat(answer, expectedAnswer, name);
       break;
     } else {
       allCorrectAnswers = true;

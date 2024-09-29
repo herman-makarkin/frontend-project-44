@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
+import defeat from '../src/utils.js';
 import gameStart from '../src/cli.js';
 
 const name = gameStart();
@@ -17,9 +18,7 @@ const brainEvenGame = () => {
     const answer = readlineSync.question('Your answer: ');
     if (expectedAnswer !== answer) {
       allCorrectAnswers = false;
-      console.log(
-        `'${answer}' is wrong answer ;(. Correct answer was '${expectedAnswer}'.\nLet's try again, ${name}!`,
-      );
+      defeat(answer, expectedAnswer, name);
       break;
     } else {
       console.log('Correct!');
