@@ -21,7 +21,23 @@ const brainCalcGame = () => {
     const operator = ['+', '-', '*'][array[1]];
 
     const expression = `${array[0]} ${operator} ${array[2]}`;
-    const expectedAnswer = eval(expression);
+    let expectedAnswer;
+
+    switch (operator) {
+      case '+':
+        expectedAnswer = array[0] + array[2];
+        break;
+      case '-':
+        expectedAnswer = array[0] - array[2];
+        break;
+      case '*':
+        expectedAnswer = array[0] * array[2];
+        break;
+      default:
+        console.error('Invalid operator');
+        throw new Error('Invalid operator');
+    }
+
     console.log(`Question: ${expression}`);
     const answer = readlineSync.question('Your answer: ');
     if (answer !== expectedAnswer.toString()) {

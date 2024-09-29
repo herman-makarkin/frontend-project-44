@@ -8,7 +8,9 @@ const name = gameStart();
 
 console.log('Find the greatest common divisor of given numbers.');
 
-const euclidGcd = (a, b) => {
+const euclidGcd = (num1, num2) => {
+  let a = num1;
+  let b = num2;
   while (a !== b) {
     if (a > b) a -= b;
     else b -= a;
