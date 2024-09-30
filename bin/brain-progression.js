@@ -10,13 +10,14 @@ console.log('What number is missing in the progression?');
 let allCorrect = false;
 
 const brainProgressionGame = () => {
-  const array = [];
   for (let i = 0; i < 3; i += 1) {
-    let number1 = Math.floor(Math.random() * 10);
-    const number2 = Math.floor(Math.random() * 10);
-    const expectedAnswer = number1 + number2 * 5;
+    const array = [];
+    let number1 = Math.floor(Math.random() * 9) + 2;
+    const number2 = Math.floor(Math.random() * 6) + 2;
+    const expectedAnswerPosition = Math.floor(Math.random() * 10) + 1;
+    const expectedAnswer = number1 + number2 * expectedAnswerPosition;
     for (let j = 0; j < 11; j += 1) {
-      if (j === 5) {
+      if (j === expectedAnswerPosition - 1) {
         number1 += number2;
         array.push('..');
       } else {

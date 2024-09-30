@@ -12,9 +12,9 @@ let allCorrect = false;
 const brainCalcGame = () => {
   for (let i = 0; i < 3; i += 1) {
     const array = [
-      Math.floor(Math.random() * 100),
+      Math.floor(Math.random() * 10) + 1,
       Math.floor(Math.random() * 3),
-      Math.floor(Math.random() * 100),
+      Math.floor(Math.random() * 10) + 1,
     ];
     const operator = ['+', '-', '*'][array[1]];
     const expression = `${array[0]} ${operator} ${array[2]}`;
