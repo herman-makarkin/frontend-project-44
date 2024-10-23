@@ -16,7 +16,7 @@ cd ./frontend-project-44
 make install
 ```
 
-now after you typing this command you should see the following output
+now after typing this command you should see the following output
 
 ```
 make brain-games
